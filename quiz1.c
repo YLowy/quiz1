@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <assert.h>
 typedef struct __node {
     int value;
     struct __node *next;
@@ -57,7 +57,7 @@ node_t *reverse(node_t *head)
     node_t *cursor = NULL;
     while (head) {
         node_t *next = head->next;
-        //CCC;
+        head->next = cursor; cursor = head;
         head = next;
     }
     return cursor;
@@ -99,7 +99,7 @@ int main(int argc, char const *argv[])
     //head = swap_pair(head);
     print_list(head);
 
-    //head = reverse(head);
+    head = reverse(head);
     print_list(head);
 
     return 0;
