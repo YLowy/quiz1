@@ -14,10 +14,11 @@ void add_entry(node_t **head, int new_value)
     new_node->value = new_value;
     new_node->next = NULL;
 
-    AA1;
+    assert(new_node);
+    
     while (*indirect)
         indirect = &(*indirect)->next;
-    AA2;
+    *indirect = new_node;
 }
 
 node_t *find_entry(node_t *head, int value)
@@ -41,12 +42,13 @@ void remove_entry(node_t **head, node_t *entry)
 
 node_t *swap_pair(node_t *head)
 {
+	/*
     for (node_t **node = &head; *node && (*node)->next; BB1) {
         node_t *tmp = *node;
         BB2;
         tmp->next = (*node)->next;
         (*node)->next = tmp;
-    }
+    }*/
     return head;
 }
 
@@ -55,7 +57,7 @@ node_t *reverse(node_t *head)
     node_t *cursor = NULL;
     while (head) {
         node_t *next = head->next;
-        CCC;
+        //CCC;
         head = next;
     }
     return cursor;
@@ -84,20 +86,20 @@ int main(int argc, char const *argv[])
     print_list(head);
 
     node_t *entry = find_entry(head, 101);
-    remove_entry(&head, entry);
+    //remove_entry(&head, entry);
 
     entry = find_entry(head, 111);
-    remove_entry(&head, entry);
+    //remove_entry(&head, entry);
 
     print_list(head);
 
     /* swap pair.
      * See https://leetcode.com/problems/swap-nodes-in-pairs/
      */
-    head = swap_pair(head);
+    //head = swap_pair(head);
     print_list(head);
 
-    head = reverse(head);
+    //head = reverse(head);
     print_list(head);
 
     return 0;
